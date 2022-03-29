@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <title>Points on a map</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+      body { 
+        margin: 0; 
+        padding: 0; 
+      }
+      #map { 
+        position: absolute; 
+        top: 0; 
+        bottom: 0; 
+        width: 100%; 
+      }
+
+
+      #sidebar {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            bottom: 15px;
+            width: 350px;
+            overflow: auto;
+            background: rgba(255, 255, 255, 0.8);
+            font-family: "Arial";
+            padding-left: 10px;
+        }
+    
+    #tooltip-name {
+            font-size: 50px;
+
+
+    }
+
+
+
+    </style>
+  </head>
+  <body>
+
+
+
+
+    
+    <div id='map'></div>
+
+
+    <div id='sidebar'>
+        <!-- <h1>Choropleth example using Mapbox GL js</h1>
+        <h2>Population change, 1990-2000</h2> -->
+        <div id="tooltip-name"></div>
+        <div id='tooltip'></div>
+    </div>
+
+    <script>
+        
+    // The value for 'accessToken' begins with 'pk...'
+    mapboxgl.accessToken = 'pk.eyJ1IjoiMTU0LWZhbWlseS1zZXBhcmF0aW9ucyIsImEiOiJja3c4MGhobjJjbW9jMm5xMXNyd21xNXI5In0.hkF5HVL6mdh7v0M0eKaYPg'; 
+    const map = new mapboxgl.Map({
+      container: 'map',
+      // Replace YOUR_STYLE_URL with your style URL.
+      style: 'mapbox://styles/154-family-separations/ckwa9vc0m5o4y14o3sodg0oaw', 
+      center: [-85.7129, 37.0902],
+      //center: [-96, 37.8],
+      zoom: 3.5
+    });
+
+
+    
+
+    map.on('mouseover', 'facilities', () => {
+    console.log('A mouseover event has occurred on a visible portion of the facilities layer.');
+    });
+
+
+    map.on('click', (event) => {
+        const features = map.queryRenderedFeatures(event.point, {
+        layers: ['facilities']
+        });
+        if (!features.length) {
+        return;
+        }
+        const feature = features[0];
+
+        console.log(feature)
+
+        map.flyTo({
+        center: feature.geometry.coordinates,
+        offset: [-200, 0],
+        zoom: 9,
+        speed: 0.75,
+        curve: 1.5,
+        });
+        
+        const popup = new mapboxgl.Popup({
+        offset: [0, -15],
+        //closeOnClick: true,
+        })
+        .setLngLat(feature.geometry.coordinates)
+        .setHTML(
+        `<h3>${feature.properties.FACILITY_APPROVED}</h3><p>${feature.properties.count}</p>`
+        )
+        .addTo(map);
+    });
+
+
+    map.on("click", function (e) {
+            var features = map.queryRenderedFeatures(e.point, {
+                layers: ["facilities"]
+            });
+
+            if (features.length) {
+                //show name and value in sidebar
+                document.getElementById('tooltip-name').innerHTML = features[0].properties.FACILITY_APPROVED;
+                document.getElementById('tooltip').innerHTML = features[0].properties.count;
+                //for troubleshooting - show complete features info
+                //document.getElementById('tooltip').innerHTML = JSON.stringify(features, null, 2);
+            } else {
+                //if not hovering over a feature set tooltip to empty
+                document.getElementById('tooltip-name').innerHTML = "";
+                document.getElementById('tooltip').innerHTML = "";
+            }
+        });
+
+
+
+
+
+    </script>
+  </body>
+</html>
+
+
+
+    </script>
+  </body>
+</html>

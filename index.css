@@ -1,0 +1,558 @@
+:root {
+  --white: #eee;
+  --off-white: #d8d8d8;
+  --light-gray: #bdbdbd;
+  --primary: #ff8080;
+  --secondary: #ffbfbf;
+  --yellow: #ffc300;
+  --orange: #ff5733;
+  --maroon: #900c3e;
+  --purple: #571845;
+}
+
+a {
+  color: var(--yellow);
+}
+
+a:hover {
+  color: #ffd23e;
+}
+
+p {
+  font-family: 'Open Sans', sans-serif;
+  color: #eeeeee;
+  font-weight: 300;
+}
+
+.subheading {
+  color: #bdbdbd;
+  font-size: 3rem;
+  font-weight: 300;
+}
+
+svg {
+  width: 100%;
+  /* height: 600px; */
+  padding-left: 5%;
+  padding-right: 50px;
+}
+
+h1 {
+  font-size: 70pt;
+  font-weight: 300;
+  line-height: 1.3;
+  text-align: left;
+  color: #eeeeee;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+h2 {
+  font-size: 40px;
+  color: #ff8080;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+h3 {
+  font-size: 30px;
+  color: #ffbfbf;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+h4 {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.3;
+  text-align: left;
+  color: #eeeeee;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+body {
+  font-size: 18px;
+  background-color: #161616;
+  overflow-x: hidden;
+}
+
+hr {
+  border: 0;
+  clear: both;
+  display: block;
+  width: 100%;
+  background-color: #eeeeee;
+  height: 1px;
+}
+
+.sticky-scroll-text {
+  position: -webkit-sticky;
+  position: sticky;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.8s;
+  -webkit-transition: opacity 0.8s;
+}
+
+.stick-to-top {
+  top: 10%;
+}
+
+.stick-to-center {
+  top: 40%;
+}
+
+.regular-image {
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+}
+
+#title-image {
+  position: fixed;
+  width: 100vw;
+  left: 0;
+  z-index: 0;
+}
+
+.scrolly-image {
+  max-width: 100%;
+  max-height: 100%;
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  opacity: 0;
+  transition: opacity 1.2s;
+  -webkit-transition: opacity 1.2s;
+}
+
+.scrolly-text {
+  max-width: 100%;
+  max-height: 100%;
+  opacity: 0;
+  transition: opacity 1.2s;
+  -webkit-transition: opacity 1.2s;
+}
+
+.scrolly-sidebar {
+  max-width: 100%;
+  max-height: 100%;
+  opacity: 0;
+  transition: opacity 1.2s;
+  -webkit-transition: opacity 1.2s;
+}
+
+.active {
+  opacity: 1;
+}
+
+.deactive {
+  opacity: 0;
+}
+
+.disabled {
+  display: none;
+}
+
+
+/* Spacers are 100% viewport height, can be used as SM triggers*/
+.spacer {
+  min-height: 70vh;
+}
+
+/* Removes the border from the iframe */
+#map {
+  /* position: relative; */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  border: none;
+}
+
+.send-to-back {
+  z-index: -1;
+}
+
+.send-to-front {
+  z-index: 1;
+}
+
+#tooltip-name {
+  font-size: 30px;
+}
+
+/* ------------------- */
+/* ARC DIAGRAM STYLING */
+/* ------------------- */
+
+#arc {
+  position: relative;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  border: none;
+}
+
+.curve,
+.line {
+  fill: none;
+  stroke-width: 4px;
+}
+
+.curve {
+  stroke: red;
+}
+
+#arc-tooltip {
+  position: absolute;
+  width: 300px;
+  padding: 5px;
+  color: #f1f1f1;
+  font-family: 'Open Sans', sans-serif;
+  background: rgb(0, 0, 0);
+  z-index: 2;
+  box-shadow: 0px 0px 5px #000000b6;
+  font-weight: 500;
+  border-radius: 5pt;
+}
+
+.x-axis,
+.y-axis {
+  stroke: #d4d4d4;
+  color: #d4d4d4;
+  font-size: 12px;
+}
+
+.x-axis text {
+  font-family: 'Open Sans';
+  font-weight: lighter;
+  stroke: #a3a3a3;
+}
+
+.y-axis .tick line {
+  display: none;
+}
+
+#arc-tooltip.hidden {
+  display: none;
+}
+
+/* --------------- */
+/* SIDEBAR STYLING */
+/* --------------- */
+
+#sidebar {
+  position: absolute;
+  width: 60%;
+  height: 100vh;
+  right: 0;
+  overflow: auto;
+  background: rgba(22, 22, 22, 0.8);
+  font-family: 'Arial';
+  padding: 10px;
+  z-index: 1;
+  overflow-x: hidden;
+  animation-name: FadeIn;
+  animation-duration: 1s;
+  transition-timing-function: linear;
+}
+
+#sidebar hr {
+  margin: 0;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2%;
+}
+
+.sidebar-header h2 {
+  color: var(--white);
+}
+
+.sidebar-top-row {
+  padding: 2% 0 2% 0;
+}
+
+.sidebar-top-row label {
+  color: var(--yellow);
+  font-family: 'Open Sans';
+  font-size: xx-large;
+  padding-left: 1%;
+}
+
+.sidebar-top-labels {
+  color: var(--off-white);
+}
+
+.sidebar-top-values {
+  font-family: 'Open Sans';
+  color: var(--yellow);
+}
+
+.sidebar-summary-main {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: var(--off-white);
+  font-size: 20pt;
+}
+
+.sidebar-summary-main b {
+  font-size: 30pt;
+  padding: 0 3pt 0 3pt;
+  color: var(--yellow);
+}
+
+.sidebar-summary-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 0% 5% 0 5%;
+}
+
+.sidebar-summary-container label {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: large;
+  color: var(--light-gray);
+}
+
+#scrollytelling-map-container {
+  z-index: -1;
+}
+
+#img5 {
+  width: 100%;
+  padding: 5%;
+}
+
+.big-number {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.big-number h1 {
+  font-size: 150pt;
+  color: var(--yellow);
+}
+
+.big-number label {
+  font-size: 18pt;
+  font-family: 'Times New Roman', Times, serif;
+  color: var(--light-gray);
+}
+
+.scrollytelling-with-sidebar {
+  width: 40%;
+  padding: 2%;
+}
+
+.blurred {
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}
+
+#scrollmap-content-0 {
+  display: flex;
+  justify-content: center;
+  padding: 2%;
+}
+
+#scrollmap-content-1 {
+  color: var(--light-gray) !important;
+}
+
+#scrollmap-content-2 {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: xx-large;
+  color: var(--off-white);
+  padding: 5%;
+}
+
+#scrollmap-content-3 b {
+  font-size: larger;
+  color: var(--secondary);
+}
+
+#scrollmap-content-4 b {
+  font-size: x-large;
+  color: var(--secondary);
+}
+
+#scrollmap-content-5 b {
+  font-size: large;
+  color: var(--orange);
+}
+
+#scrollmap-content-6 b {
+  font-size: x-large;
+  color: var(--yellow);
+}
+
+.author-label {
+  font-size: large;
+  color: var(--light-gray);
+}
+
+#cayuga-demo {
+  position: fixed;
+  right: 0pt;
+  width: 60%;
+  z-index: -1;
+}
+
+@keyframes FadeIn {
+  0% {
+    opacity: 0;
+    right: -1000pt;
+  }
+  100% {
+    opacity: 1;
+    right: 0pt;
+  }
+}
+
+@-moz-keyframes FadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes FadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes FadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-ms-keyframes FadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* --------------------- */
+/* MISCELLANEOUS STYLING */
+/* --------------------- */
+
+/* Customize scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 12pt;
+  height: 12pt;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 6pt;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(53, 53, 53);
+  border-radius: 6pt;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(63, 63, 63);
+}
+
+/* --------------------- */
+/*    MAPBOX STYLING     */
+/* --------------------- */
+
+.map-overlay {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  margin-right: 20px;
+  margin-left: 60px;
+  font-family: Arial, sans-serif;
+  /* overflow: auto; */
+  border-radius: 3px;
+}
+
+#legend {
+  padding: 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  line-height: 18px;
+  margin-bottom: 40px;
+  width: 275px;
+  height: 100px;
+  opacity: 0.8;
+  z-index: 1;
+}
+
+#legend-text {
+  display: inline-block;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
+  color: black;
+  line-height: 1px;
+}
+
+.legend-key {
+  display: inline-block;
+  border-radius: 20%;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+}
+
+#bubble_caption {
+  font-size: 30px;
+  font-weight: 100;
+  line-height: 1.3;
+  text-align: left;
+  color: #eeeeee;
+  font-family: 'Times New Roman', Times, serif;
+  text-align: center;
+}
+
+.image_caption {
+  font-style: italic;
+  font-size: 15px;
+  font-weight: 20;
+  line-height: 1.3;
+  text-align: left;
+  color: #eeeeee;
+  font-family: 'Times New Roman', Times, serif;
+  margin-top: 20px;
+}
+
+#bubble_caption {
+  font-size: 20px;
+  font-weight: 100;
+  line-height: 1.3;
+  text-align: left;
+  color: #eeeeee;
+  font-family: 'Times New Roman', Times, serif;
+  text-align: center;
+}
+
+.image_caption {
+  font-style: italic;
+  font-size: 15px;
+  font-weight: 20;
+  line-height: 1.3;
+  text-align: left;
+  color: #eeeeee;
+  font-family: 'Times New Roman', Times, serif;
+  margin-top: 20px;
+}
+
